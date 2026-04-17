@@ -1,0 +1,263 @@
+/* index.css — Sistema de diseño OL Group Lab
+ *
+ * Toda la paleta, tipografía y utilidades globales viven aquí.
+ * Importar las fuentes de Google antes de Tailwind es intencional —
+ * así están disponibles desde el primer render sin flash de fuente genérica.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Variables CSS del sistema de diseño ──────────────────────────
+ * Todos los colores, radios y sombras del proyecto se definen aquí.
+ * Cambiar un color aquí lo cambia en toda la aplicación.
+ */
+:root {
+  /* Paleta principal — inspirada en el diseño OL Group */
+  --color-bg: #f7f9ff;
+  --color-surface: #ffffff;
+  --color-surface-low: #edf4ff;
+  --color-surface-high: #dee9f8;
+  --color-surface-dim: #d0dbea;
+
+  --color-primary: #05101a;
+  --color-primary-mid: #1a2530;
+  --color-primary-soft: #3d4854;
+
+  /* Acento teal — el color más memorable del sistema */
+  --color-accent: #41D2C9;
+  --color-accent-dim: #00897b;
+  --color-accent-bg: #6bf5eb33;
+
+  --color-muted: #44474b;
+  --color-border: #c4c6cc;
+  --color-border-soft: #e3effe;
+
+  --color-error: #ba1a1a;
+  --color-error-bg: #ffdad6;
+  --color-success: #1b873a;
+  --color-success-bg: #d3f0dc;
+  --color-warning: #7c5c00;
+  --color-warning-bg: #fef3c7;
+
+  /* Tipografía */
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(5, 16, 26, 0.08), 0 1px 2px rgba(5, 16, 26, 0.04);
+  --shadow-md: 0 4px 16px rgba(5, 16, 26, 0.10), 0 2px 4px rgba(5, 16, 26, 0.06);
+  --shadow-lg: 0 12px 40px rgba(5, 16, 26, 0.14), 0 4px 8px rgba(5, 16, 26, 0.08);
+  --shadow-accent: 0 8px 32px rgba(65, 210, 201, 0.20);
+}
+
+/* ── Reset y base ─────────────────────────────────────────────────*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand {
+  font-family: var(--font-display);
+}
+
+/* ── Clases utilitarias del sistema ──────────────────────────────*/
+@layer components {
+
+  /* Tarjeta base — superficie blanca con borde sutil */
+  .card {
+    @apply bg-white rounded-xl border border-[#e3effe] shadow-sm;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Tarjeta glass — efecto traslúcido como en el diseño de referencia */
+  .card-glass {
+    @apply rounded-xl border border-white/20;
+    background: rgba(222, 233, 248, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Input del sistema — estilo underline como en el diseño de referencia */
+  .input-lab {
+    @apply w-full px-4 py-3.5 bg-[#dee9f8]/30 border-b-2 border-[#c4c6cc] focus:border-[#41D2C9] focus:outline-none focus:ring-0 transition-all font-medium text-sm text-[#05101a];
+    font-family: var(--font-body);
+  }
+
+  .input-lab::placeholder {
+    color: #74777c;
+  }
+
+  /* Select del sistema */
+  .select-lab {
+    @apply w-full px-4 py-3.5 bg-[#dee9f8]/30 border-b-2 border-[#c4c6cc] focus:border-[#41D2C9] focus:outline-none focus:ring-0 transition-all font-medium text-sm text-[#05101a] bg-white;
+    font-family: var(--font-body);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2374777c'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+
+  /* Botón primario */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-sm text-white rounded-xl transition-all active:scale-[0.98];
+    background: linear-gradient(135deg, #05101a 0%, #1a2530 100%);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Botón acento teal */
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-sm rounded-xl transition-all active:scale-[0.98];
+    background: linear-gradient(135deg, #41D2C9 0%, #00897b 100%);
+    color: #05101a;
+    box-shadow: var(--shadow-accent);
+    font-family: var(--font-display);
+  }
+
+  .btn-accent:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Botón outline */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 font-semibold text-sm rounded-xl border-2 border-[#c4c6cc] text-[#44474b] hover:border-[#41D2C9] hover:text-[#05101a] transition-all;
+    font-family: var(--font-body);
+  }
+
+  /* Badge de estado */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full;
+    font-family: var(--font-display);
+  }
+
+  /* Número de paso como en el diseño de referencia */
+  .step-number {
+    @apply w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm text-white flex-shrink-0;
+    background: var(--color-primary);
+    font-family: var(--font-display);
+  }
+
+  /* Label flotante sobre inputs */
+  .field-label {
+    @apply text-[10px] font-bold uppercase tracking-widest;
+    color: var(--color-muted);
+    font-family: var(--font-display);
+  }
+}
+
+/* ── Scrollbar personalizada ─────────────────────────────────────*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c6cc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #41D2C9;
+}
+
+/* ── Animaciones ─────────────────────────────────────────────────*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-teal {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(65, 210, 201, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(65, 210, 201, 0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Aplica delays escalonados a hijos directos */
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0.05s;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.05s forwards;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 0.10s;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.10s forwards;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 0.15s;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.15s forwards;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 0.20s;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.20s forwards;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 0.25s;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.25s forwards;
+}
+
+/* ── Material Symbols ────────────────────────────────────────────*/
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.material-symbols-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

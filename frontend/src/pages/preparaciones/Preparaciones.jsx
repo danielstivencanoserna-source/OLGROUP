@@ -1452,7 +1452,7 @@ export default function Preparaciones() {
                     display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px',
                   }}>
                     <div>
-                      <FieldLabel>Fecha / hora de preparación</FieldLabel>
+                      <FieldLabel>Fecha</FieldLabel>
                       <StitchInput
                         type="date"
                         {...register('fecha_preparacion')}
